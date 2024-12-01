@@ -48,10 +48,10 @@ with open(day_desc_path, "w", encoding='utf-8') as md_file:
     md_file.write(f"# {title_text}\n\n")
     for section in instructions:
         if section.name == "p":
-            md_file.write(section.get_text(strip=True) + "\n\n")
+            md_file.write(section.get_text() + "\n\n")
         elif section.name == "pre":
             md_file.write("```shell\n")
-            md_file.write(section.get_text(strip=True) + "\n")
+            md_file.write(section.get_text() + "\n")
             md_file.write("```\n")
     print(f"Content for test input saved at : {day_desc_path}")
     md_file.close()
