@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.10"
 bs4 = "^0.0.2"
 requests = "^2.32.3"
+pytest = "^8.3.4"
 
 
 [build-system]

@@ -26,11 +26,14 @@ except:
     raise KeyError('Missing entry for day (-d) or year (-y)')
 
 ########### CREATE DIRECTORY ###########
-dest = os.path.join(args.y,f'day_{args.d}')
-if os.path.isdir(dest):
-    raise FileExistsError(f'Destination directory "{dest}" already exists')
-os.makedirs(dest)
+dest_day = os.path.join(args.y,f'day_{args.d}')
+dest_test = os.path.join('tests',args.y)
+if os.path.isdir(dest_day):
+    raise FileExistsError(f'destination directory "{dest_day}" already exists')
+os.makedirs(dest_day)
 
+if not os.path.exists(dest_test):
+    os.makedirs(dest_test)
 ########### PARSE DAY PROBLEM ###########
 url = 'https://adventofcode.com'
 line_size = 120
@@ -43,7 +46,7 @@ instructions = soup.find('article',attrs={'class':'day-desc'})
 ########### COLLECT DAY DESCRIPTION ###########
 day_desc_title = soup.select_one(".day-desc h2")
 title_text = day_desc_title.get_text(strip=True) if day_desc_title else ""
-day_desc_path = os.path.join(dest, 'README.md')
+day_desc_path = os.path.join(dest_day, 'README.md')
 with open(day_desc_path, "w", encoding='utf-8') as md_file:
     md_file.write(f"# {title_text}\n\n")
     for section in instructions:
@@ -57,7 +60,7 @@ with open(day_desc_path, "w", encoding='utf-8') as md_file:
     md_file.close()
 
 ########### COLLECT TEST INPUT ###########
-test_input_path = os.path.join(dest, 'test_input.txt')
+test_input_path = os.path.join(dest_day, 'test_input.txt')
 for i, section in enumerate(instructions):
     if section.name == 'p' and 'example' in section.text.lower():
         next_section = section.find_next_sibling()
@@ -69,7 +72,7 @@ for i, section in enumerate(instructions):
             break
 
 ########### COLLECT REAL INPUT ###########
-real_input_path = os.path.join(dest, 'real_input.txt')
+real_input_path = os.path.join(dest_day, 'real_input.txt')
 with open(real_input_path,"w") as file:
     output = subprocess.check_output(f'curl {day_url}/input --cookie "session={session}"', shell=True)
     output = output.decode('utf-8')
@@ -79,4 +82,15 @@ with open(real_input_path,"w") as file:
 
 ########### CLONE SOLUTION TEMPLATE ###########
 template_solution = os.path.join('templates','solution.py')
-shutil.copyfile(template_solution, os.path.join(dest,'solution.py'))
+solution_path = os.path.join(dest_day,'solution.py')
+shutil.copyfile(template_solution, solution_path)
+print(f"Content for solution saved at : {solution_path}")
+
+########### CLONE TEST SOLUTION TEMPLATE ###########
+template_test = os.path.join('templates','test_solution.py')
+test_solution_path = os.path.join(dest_test,f'test_day_{args.d}.py')
+shutil.copyfile(template_test, test_solution_path)
+subprocess.run(["sed","-i", "", "-e", f"s|day = 'DAY'|day = {args.d}|g", test_solution_path])
+subprocess.run(["sed","-i", "", "-e", f"s|year = 'YEAR'|year = {args.y}|g", test_solution_path])
+print(f"Content for test solution saved at : {test_solution_path}")
+print('Process finished :)')

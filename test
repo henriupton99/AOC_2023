@@ -1,0 +1,12 @@
+#!/bin/bash
+# script for test solution content of problem of AOC
+# inputs are : DAY, YEAR (need to respect the order)
+
+if [ "$#" -ne 2 ]; then
+  echo "Need four input arguments in the following order: test <day> <year>"
+  exit 1
+fi
+
+DAY=$1
+YEAR=$2
+poetry run pytest tests/${YEAR}/test_day_${DAY}.py
