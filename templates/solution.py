@@ -5,7 +5,8 @@ class Solution:
   filename_test_input = 'test_input.txt'
   
   def __init__(self, test=False):
-    self.file = open(self.filename_test_input,'r').read() if test else open(self.filename_real_input,'r').read()
+    self.filename = self.filename_test_input if test else self.filename_real_input
+    self.file = open(self.filename,'r').read()
     self.lines = self.file.splitlines()
     
   def part1(self):
