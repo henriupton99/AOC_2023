@@ -43,7 +43,7 @@ instructions = soup.find('article',attrs={'class':'day-desc'})
 ########### COLLECT DAY DESCRIPTION ###########
 day_desc_title = soup.select_one(".day-desc h2")
 title_text = day_desc_title.get_text(strip=True) if day_desc_title else ""
-day_desc_path = os.path.join(dest, 'day_desc.md')
+day_desc_path = os.path.join(dest, 'README.md')
 with open(day_desc_path, "w", encoding='utf-8') as md_file:
     md_file.write(f"# {title_text}\n\n")
     for section in instructions:
