@@ -61,6 +61,30 @@ For example, the following command :
 
 will run you **solution.py** and collect the answer for **part 1** (third argument) for **test mode set to true** (fourth argument). 
 
+### 1.4. Test of your solution 
+
+For example, the following command :
+
+```shell
+#./submit day year part(1/2) test_mode(true/false)
+./test 1 2024
+```
+
+will run tests for **day 1** (first argument) for **year 2024** (second argument), based on an expected output given in the day description :
+
+```python
+import subprocess
+expected_output = {'1':"EXEPCTED SOLUTION FOR PART 1", '2':"EXEPCTED SOLUTION FOR PART 2"}
+day = '3'
+year = '2024'
+
+def test_solution():
+  for part in ['1','2']:
+    command = ['./submit', day, year, part, 'true']
+    result = subprocess.run(command, stdout=subprocess.PIPE, text=True, check=True)
+    assert result.stdout == f'Result for Part=={part} & Test==True : {expected_output[part]}\n'
+```
+
 ## 2. What did I learn from the past ?
 
 ### 2.1. Basic tools
