@@ -26,8 +26,8 @@ except:
     raise KeyError('Missing entry for day (-d) or year (-y)')
 
 ########### CREATE DIRECTORY ###########
-dest_day = os.path.join(args.y,f'day_{args.d}')
-dest_test = os.path.join('tests',args.y)
+dest_day = os.path.join('problems', args.y, f'day_{args.d}')
+dest_test = os.path.join('tests', args.y)
 if os.path.isdir(dest_day):
     raise FileExistsError(f'destination directory "{dest_day}" already exists')
 os.makedirs(dest_day)
@@ -90,7 +90,7 @@ print(f"Content for solution saved at : {solution_path}")
 template_test = os.path.join('templates','test_solution.py')
 test_solution_path = os.path.join(dest_test,f'test_day_{args.d}.py')
 shutil.copyfile(template_test, test_solution_path)
-subprocess.run(["sed","-i", "", "-e", f"s|day = 'DAY'|day = {args.d}|g", test_solution_path])
-subprocess.run(["sed","-i", "", "-e", f"s|year = 'YEAR'|year = {args.y}|g", test_solution_path])
+subprocess.run(["sed","-i", "", "-e", f"s|day = 'DAY'|day = '{args.d}'|g", test_solution_path])
+subprocess.run(["sed","-i", "", "-e", f"s|year = 'YEAR'|year = '{args.y}'|g", test_solution_path])
 print(f"Content for test solution saved at : {test_solution_path}")
 print('Process finished :)')

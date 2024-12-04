@@ -66,11 +66,11 @@ will run you **solution.py** and collect the answer for **part 1** (third argume
 For example, the following command :
 
 ```shell
-#./submit day year part(1/2) test_mode(true/false)
+#./test day year
 ./test 1 2024
 ```
 
-will run tests for **day 1** (first argument) for **year 2024** (second argument), based on an expected output given in the day description :
+will run tests for **day 1** (first argument) for **year 2024** (second argument), based on an expected output given in the day description that you need to insert in the variable **expected_output** of the file [test_day_3.py](./tests/2024/test_day_3.py):
 
 ```python
 import subprocess

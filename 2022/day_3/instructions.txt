@@ -1,7 +1,0 @@
---- Day 3: Rucksack Reorganization ---One Elf has the important job of loading all of the rucksacks with supplies for th 
-e jungle journey. Unfortunately, that Elf didn't quite follow the packing instructions, and so a few items now need to b 
-e rearranged.
-Each rucksack has two large compartments. All items of a given type are meant to go into exactly one of th 
-e two compartments. The Elf that did the packing failed to follow this rule for exactly one item type per rucksack.
-The  
-Elves have made a list of all of the items currently in each rucksack (your puzzle input), but they need your help findi 

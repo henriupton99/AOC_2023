@@ -11,5 +11,5 @@ DAY=$1
 YEAR=$2
 PART=$3
 TEST=$4
-cd ${YEAR}/day_${DAY}
+cd problems/${YEAR}/day_${DAY}
 poetry run python3 solution.py -part $PART -test $TEST
