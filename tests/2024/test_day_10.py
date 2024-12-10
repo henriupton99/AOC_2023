@@ -1,5 +1,5 @@
 import subprocess
-expected_output = {'1':None, '2':None}
+expected_output = {'1':36, '2':81}
 day = '10'
 year = '2024'
 
