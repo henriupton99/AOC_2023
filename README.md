@@ -100,7 +100,7 @@ def test_solution():
 - **[copy](https://docs.python.org/fr/3/library/copy.html)** : module *deepcopy* that allows to make a copy of an element completely detached from the original one (in terms of operations).
 - **[heapq](https://docs.python.org/fr/3/library/heapq.html)** : combination of heap data type ("branch type") and deque (queue type operations). *heappop* to get the first element of the queue+ remove it from the queue at the same time. *heappush* to push a new element at the end of the queue. 
 - **[collections](https://docs.python.org/fr/3/library/collections.html)** : modules such as *defaultdict* (dictionnary with enforced type), *Counter* (unique occurences,counts) *deque* (queue solving prolems with popleft, )
-- **[itertools](https://docs.python.org/fr/3/library/itertools.html)** : *combinations*
+- **[itertools](https://docs.python.org/fr/3/library/itertools.html)** : *combinations*, *product*, *cache* (keep results in cache for recursion)
 - **[simpy](https://simpy.readthedocs.io/en/latest/)** : implement/solve list of equations
 - **[networkx](https://networkx.org)** : graph construction, minimal cut problems
 
