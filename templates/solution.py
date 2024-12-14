@@ -1,8 +1,13 @@
 import argparse
+import re
 
 class Solution:
   filename_real_input = 'real_input.txt'
   filename_test_input = 'test_input.txt'
+  
+  @staticmethod
+  def get_nums(string: str) -> list[int]:
+    return list(map(int, re.findall('[-+]?\d+', string)))
   
   def __init__(self, test=False):
     self.filename = self.filename_test_input if test else self.filename_real_input
