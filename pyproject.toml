@@ -12,6 +12,7 @@ requests = "^2.32.3"
 pytest = "^8.3.4"
 tqdm = "^4.67.1"
 numpy = "^2.2.0"
+networkx = "^3.4.2"
 
 
 [build-system]
