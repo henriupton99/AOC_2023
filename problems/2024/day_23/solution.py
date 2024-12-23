@@ -16,14 +16,15 @@ class Solution:
     self.lines = [line.split('-') for line in self.file.splitlines()]
     self.graph = nx.Graph()
     self.graph.add_edges_from(self.lines)
+    self.graph_cliques = nx.enumerate_all_cliques(self.graph)
     
   def part1(self):        
-    triangles = [list(triangle) for triangle in nx.enumerate_all_cliques(self.graph) if len(triangle) == 3]
+    triangles = [list(triangle) for triangle in self.graph_cliques if len(triangle) == 3]
     triangles_with_t = [triangle for triangle in triangles if any(node.startswith('t') for node in triangle)]
     return len(triangles_with_t)
   
   def part2(self):
-    longest = max(nx.find_cliques(self.graph), key=len)
+    longest = max(self.graph_cliques, key=len)
     return ','.join(sorted(longest))
   
 if __name__ == '__main__':
